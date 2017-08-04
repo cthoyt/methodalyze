@@ -1,0 +1,11 @@
+[run]
+branch = True
+source = methodalyze
+
+[paths]
+source =
+    src/methodalyze
+    .tox/*/lib/python*/site-packages/methodalyze
+
+[report]
+show_missing = True

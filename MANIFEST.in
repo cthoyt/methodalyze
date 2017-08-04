@@ -1,0 +1,14 @@
+graft docs
+graft src
+graft tests
+
+include .bumpversion.cfg
+include .codecov.yml
+include .coveragerc
+include .travis.yml
+
+include tox.ini
+
+include *.rst
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib .DS_Store
