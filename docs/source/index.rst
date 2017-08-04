@@ -32,7 +32,7 @@ Evaluate the reproducibility of scientific protocols.
     .. |stable_documentation| image:: http://readthedocs.org/projects/methodalyze/badge/?version=stable
         :target: http://methodalyze.readthedocs.io/en/stable/?badge=stable
         :alt: Stable Documentation Status
-    .. |stable_pyversions| image:: https://img.shields.io/badge/python-2.7%2C%203.5-blue.svg
+    .. |stable_pyversions| image:: https://img.shields.io/badge/python-3.6-blue.svg
         :alt: Stable Supported Python Versions
 
     .. |develop_build| image:: https://travis-ci.org/scolby33/methodalyze.svg?branch=develop
@@ -44,7 +44,7 @@ Evaluate the reproducibility of scientific protocols.
     .. |develop_documentation| image:: http://readthedocs.org/projects/methodalyze/badge/?version=develop
         :target: http://methodalyze.readthedocs.io/en/stable/?badge=develop
         :alt: Development Documentation Status
-    .. |develop_pyversions| image:: https://img.shields.io/badge/python-2.7%2C%203.5-blue.svg
+    .. |develop_pyversions| image:: https://img.shields.io/badge/python-3.6-blue.svg
         :alt: Development Supported Python Versions
 
 On this page:
