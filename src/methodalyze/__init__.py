@@ -1,4 +1,7 @@
 """Evaluate the reproducibility of scientific protocols."""
+from flask import Flask
+
+# metadata
 __version__ = '0.1.0-dev'
 
 __title__ = 'methodalyze'
@@ -11,6 +14,8 @@ __email__ = 'scolby33@gmail.com'
 
 __license__ = 'All rights reserved.'
 __copyright__ = 'Copyright (c) 2017 Scott Colby'
+
+app = Flask(__name__)
 
 # perform project imports here, e.g.
 # from . import a_module
