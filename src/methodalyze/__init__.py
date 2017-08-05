@@ -1,5 +1,6 @@
 """Evaluate the reproducibility of scientific protocols."""
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 # metadata
 __version__ = '0.1.0-dev'
@@ -16,7 +17,11 @@ __license__ = 'All rights reserved.'
 __copyright__ = 'Copyright (c) 2017 Scott Colby'
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 from . import views
+from . import models
 
 # __all__ = []
