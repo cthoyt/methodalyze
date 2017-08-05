@@ -24,4 +24,5 @@ db = SQLAlchemy(app)
 from . import views
 from . import models
 
+
 # __all__ = []

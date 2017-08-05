@@ -21,11 +21,14 @@ CLASSIFIERS = [
 ]
 INSTALL_REQUIRES = [
     'flask',
-    'flask-sqlalchemy'
+    'flask-sqlalchemy',
+    'docopt'
 ]
 EXTRAS_REQUIRE = {}
 TESTS_REQUIRE = ['tox']
-ENTRY_POINTS = {}
+ENTRY_POINTS = {
+    'console_scripts': ['methodctl=methodalyze.admin_cli:main']
+}
 
 #################################################################
 
