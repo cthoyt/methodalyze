@@ -17,8 +17,6 @@ __copyright__ = 'Copyright (c) 2017 Scott Colby'
 
 app = Flask(__name__)
 
-# perform project imports here, e.g.
-# from . import a_module
-# from .b_module import Class, function
+from . import views
 
 # __all__ = []
