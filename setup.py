@@ -20,7 +20,8 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
 ]
 INSTALL_REQUIRES = [
-    'flask'
+    'flask',
+    'flask-sqlalchemy'
 ]
 EXTRAS_REQUIRE = {}
 TESTS_REQUIRE = ['tox']
