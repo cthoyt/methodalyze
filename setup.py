@@ -19,7 +19,9 @@ CLASSIFIERS = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 3.6',
 ]
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = [
+    'flask'
+]
 EXTRAS_REQUIRE = {}
 TESTS_REQUIRE = ['tox']
 ENTRY_POINTS = {}
