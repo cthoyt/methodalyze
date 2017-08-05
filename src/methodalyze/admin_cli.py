@@ -17,7 +17,7 @@ Usage:
     methodctl evaluations add
     methodctl evaluations delete <evaluation_id>...
     methodctl evaluations deleteall
-    methodctl reset -y
+    methodctl reset [-y]
 
 Options:
     -y  Don't ask for confirmation. Dangerous!
