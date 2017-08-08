@@ -1,7 +1,11 @@
 """Evaluate the reproducibility of scientific protocols."""
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flasgger import Swagger
+from flask import Flask
+from flask_security import Security, SQLAlchemyUserDatastore
+from flask_sqlalchemy import SQLAlchemy
+
+from . import models
+from . import views
 
 # metadata
 __version__ = '0.1.0-dev'
@@ -20,11 +24,12 @@ __copyright__ = 'Copyright (c) 2017 Scott Colby'
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
+
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+security = Security(app, user_datastore)
+
 swagger = Swagger(app)
-
-from . import views
-from . import models
-
 
 # __all__ = []
