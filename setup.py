@@ -22,6 +22,8 @@ CLASSIFIERS = [
 INSTALL_REQUIRES = [
     'flask',
     'flask-sqlalchemy',
+    'flask-security',
+    'flasgger',
     'docopt'
 ]
 EXTRAS_REQUIRE = {}
