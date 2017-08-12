@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 
+"""
+
+How to run in development mode
+
+:code:`python3 -m methodalyze.application`
+
+"""
+
 from flasgger import Swagger
 from flask import Flask
 from flask_admin import Admin
