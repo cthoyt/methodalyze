@@ -28,12 +28,11 @@ import sys
 
 from docopt import docopt
 
-from . import db
-
 
 def main():
     args = docopt(__doc__)
     print(args, file=sys.stderr)
+
 
 if __name__ == '__main__':
     sys.exit(main())
