@@ -1,9 +1,10 @@
 """Setup module for the methodalyze package"""
 
-import setuptools
 import codecs  # To use a consistent encoding
 import os
 import re
+
+import setuptools
 
 #################################################################
 
@@ -20,7 +21,10 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
 ]
 INSTALL_REQUIRES = [
+    'wtforms',
     'flask',
+    'flask-bootstrap',
+    'flask-wtf',
     'flask-sqlalchemy',
     'flask-security',
     'flasgger',
@@ -42,6 +46,7 @@ def read(*parts):
     with codecs.open(os.path.join(HERE, *parts), 'rb', 'utf-8') as f:
         return f.read()
 
+
 META_FILE = read(META_PATH)
 
 
@@ -61,6 +66,7 @@ def get_long_description():
     with codecs.open(os.path.join(HERE, 'README.rst'), encoding='utf-8') as f:
         long_description = f.read()
     return long_description
+
 
 if __name__ == '__main__':
     setuptools.setup(

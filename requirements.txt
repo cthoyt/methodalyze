@@ -1,5 +1,8 @@
+wtforms
 flask
+flask-bootstrap
 flask-sqlalchemy
+flask-wtf
 flask-security
 flasgger
 docopt

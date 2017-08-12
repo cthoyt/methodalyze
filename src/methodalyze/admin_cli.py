@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """Administer the methodalyze DB.
 
 Usage:

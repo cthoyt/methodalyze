@@ -1,19 +1,30 @@
-from flask import jsonify
+# -*- coding: utf-8 -*-
+
+from flask import jsonify, Blueprint, request, redirect, render_template, flash
 from flask_security import login_required, current_user
 
-from . import app
-from . import db
-from .models import Method, Evaluation
+from methodalyze.forms import MethodEvaluationForm
+from methodalyze.models import db, Method, Evaluation
+
+ui = Blueprint('ui', __name__)
+api = Blueprint('api', __name__)
 
 
-@app.route('/')
-def index():
-    return 'Hello World!'
+@ui.route('/', methods=['GET', 'POST'])
+def evaluate():
+    form = MethodEvaluationForm()
+
+    if not form.validate_on_submit():
+        return render_template('evaluate.html', form=form, current_user=current_user)
+
+    flash('Form: {}'.format(form))
+    render_template('evaluate.html')
+    # return redirect(url_for('api.evaluate', method_id=0, likert=0, next=url_for('evaluate')))
 
 
-@app.route('/evaluate/<int:method_id>/<int:likert>', method=('POST'))
+@api.route('/evaluate/<int:method_id>/<int:likert>')
 @login_required
-def evaulate(method_id, likert):
+def evaluate(method_id, likert):
     """Evaluates a method on the Likert scale
 
     Uses SQLAlchemy to look up the method by identifier then makes an instance of the Evaluation model in order
@@ -44,6 +55,9 @@ def evaulate(method_id, likert):
 
     db.session.add(evaluation)
     db.session.commit()
+
+    if 'next' in request.args:
+        return redirect(request.args['next'])
 
     return jsonify({
         'method': {

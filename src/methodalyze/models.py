@@ -1,16 +1,26 @@
+# -*- coding: utf-8 -*-
+
 import enum
 
 from flask_security import RoleMixin, UserMixin
+from flask_sqlalchemy import SQLAlchemy
 
-from . import db
+db = SQLAlchemy()
 
 
 class Likert(enum.Enum):
-    strongly_disagree = 0
-    disagree = 1
-    neutral = 2
-    agree = 3
+    """Enumerates the Likert Scale"""
     strongly_agree = 4
+    agree = 3
+    neutral = 2
+    disagree = 1
+    strongly_disagree = 0
+
+
+class Method(db.Model):
+    __tablename__ = 'methods'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String, nullable=False)
 
 
 class Statement(db.Model):
@@ -18,24 +28,24 @@ class Statement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String, nullable=False)
 
-
-class Method(db.Model):
-    __tablename__ = 'methods'
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String, nullable=False)
-    statements = db.relationship('Statement')
+    method_id = db.Column(db.Integer, db.ForeignKey('methods.id'), nullable=False)
+    method = db.relationship('Method', backref=db.backref('statements'))
 
 
 class Evaluation(db.Model):
     __tablename__ = 'evaluations'
     id = db.Column(db.Integer, primary_key=True)
-    value = db.Column(db.Enum(Likert), nullable=False)
+
+    equipment = db.Column(db.Enum(Likert), nullable=False)
+    reagents = db.Column(db.Enum(Likert), nullable=False)
+    procedure = db.Column(db.Enum(Likert), nullable=False)
+    communication = db.Column(db.Enum(Likert), nullable=False)
 
     method_id = db.Column(db.Integer, db.ForeignKey('methods.id'), nullable=False)
     method = db.relationship('Method')
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User')
+    user = db.relationship('User', backref=db.backref('evaluations'))
 
 
 roles_users = db.Table(
