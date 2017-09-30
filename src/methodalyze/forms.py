@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms.fields import RadioField, SubmitField
-
 from methodalyze.models import Likert
+from wtforms.fields import RadioField, SubmitField
+from wtforms.validators import DataRequired
 
 equipment_text = 'This method defines the equipment used well enough to be accurately reproduced'
 reagents_text = 'This method defines the reagents used well enough to be accurately reproduced'
@@ -18,11 +18,13 @@ def enum_radio(label):
     :rtype: wtforms.fields.RadioField
     """
     return RadioField(
-        label,
+        label=label,
         choices=[
             (entry.value, entry.name.replace('_', ' ').title())
             for entry in Likert
-        ]
+        ],
+        coerce=Likert,
+        validators=[DataRequired()]
     )
 
 
@@ -33,4 +35,4 @@ class MethodEvaluationForm(FlaskForm):
     procedure = enum_radio(procedure_text)
     communication = enum_radio(communication_text)
 
-    submit = SubmitField('submit')
+    submit = SubmitField('Submit')
