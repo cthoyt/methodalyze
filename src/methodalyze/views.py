@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from flask import jsonify, Blueprint, request, redirect, render_template, flash
-from flask_security import login_required, current_user
+import logging
 
+from flask import jsonify, Blueprint, request, redirect, render_template, flash, request
+from flask_security import login_required, current_user
 from methodalyze.forms import MethodEvaluationForm
 from methodalyze.models import db, Method, Evaluation
+
+log = logging.getLogger(__name__)
 
 ui = Blueprint('ui', __name__)
 api = Blueprint('api', __name__)
@@ -15,7 +18,11 @@ def evaluate():
     form = MethodEvaluationForm()
 
     if not form.validate_on_submit():
+        log.warning('gotta build the form: %s, %s', request.form, request.args)
+        flash('hanging')
         return render_template('evaluate.html', form=form, current_user=current_user)
+
+    log.warning('process results')
 
     flash('Form: {}'.format(form))
     render_template('evaluate.html')
