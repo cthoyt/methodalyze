@@ -26,7 +26,7 @@
             margin-bottom: 10px;
         }
 
-        form .likert {
+        form ul {
             list-style: none;
             width: 100%;
             margin: 20px 0;
@@ -34,11 +34,11 @@
             border-bottom: 2px solid #efefef;
         }
 
-        form .likert:last-of-type {
+        form ul:last-of-type {
             border-bottom: 0;
         }
 
-        form .likert:before {
+        form ul:before {
             content: '';
             position: relative;
             top: 11px;
@@ -49,14 +49,14 @@
             width: 78%;
         }
 
-        form .likert li {
+        form ul li {
             display: inline-block;
             width: 19%;
             text-align: center;
             vertical-align: top;
         }
 
-        form .likert li input[type=radio] {
+        form ul li input[type=radio] {
             display: block;
             position: relative;
             top: 0;
@@ -64,7 +64,7 @@
             margin-left: -6px;
         }
 
-        form .likert li label {
+        form ul li label {
             width: 100%;
             font-weight: normal;
         }
@@ -96,6 +96,7 @@
 
 {% block content %}
     <div class="container">
+        {{ util.flashed_messages(dismissible=True, container=False) }}
         <h1>Evaluate a method</h1>
         <p class="lead">Read the method and answer the questions according to your experience as a researcher.</p>
 
@@ -116,59 +117,19 @@
                     times to deoxygenate the oil. All spectral data matched literature data.
                 </p>
             </div>
-            <div class="col-lg-6">
-                {{ wtf.quick_form(form, form_type='horizontal', button_map={'submit_button': 'btn btn-primary'}) }}
-            </div>
 
             <div class="col-lg-6">
-                <form action="https://y.scolby.com/">
-                    <label class="statement">This method defines the equipment used well enough to be accurately
-                        reproduced.</label>
-                    <ul class="likert">
-                        <li><input type="radio" name="likert1" value="strong_agree"><label>Strongly agree</label></li>
-                        <li><input type="radio" name="likert1" value="agree"><label>Agree</label></li>
-                        <li><input type="radio" name="likert1" value="neutral"><label>Neutral</label></li>
-                        <li><input type="radio" name="likert1" value="disagree"><label>Disagree</label></li>
-                        <li><input type="radio" name="likert1" value="strong_disagree"><label>Strongly disagree</label>
-                        </li>
-                    </ul>
-
-                    <label class="statement">This method defines the reagents used well enough to be accurately
-                        reproduced.</label>
-                    <ul class="likert">
-                        <li><input type="radio" name="likert2" value="strong_agree"><label>Strongly agree</label></li>
-                        <li><input type="radio" name="likert2" value="agree"><label>Agree</label></li>
-                        <li><input type="radio" name="likert2" value="neutral"><label>Neutral</label></li>
-                        <li><input type="radio" name="likert2" value="disagree"><label>Disagree</label></li>
-                        <li><input type="radio" name="likert2" value="strong_disagree"><label>Strongly disagree</label>
-                        </li>
-                    </ul>
-
-                    <label class="statement">This method defines the procedures used well enough to be accurately
-                        reproduced.</label>
-                    <ul class="likert">
-                        <li><input type="radio" name="likert3" value="strong_agree"><label>Strongly agree</label></li>
-                        <li><input type="radio" name="likert3" value="agree"><label>Agree</label></li>
-                        <li><input type="radio" name="likert3" value="neutral"><label>Neutral</label></li>
-                        <li><input type="radio" name="likert3" value="disagree"><label>Disagree</label></li>
-                        <li><input type="radio" name="likert3" value="strong_disagree"><label>Strongly disagree</label>
-                        </li>
-                    </ul>
-
-                    <label class="statement">This method communicates the results of the experiment.</label>
-                    <ul class="likert">
-                        <li><input type="radio" name="likert4" value="strong_agree"><label>Strongly agree</label></li>
-                        <li><input type="radio" name="likert4" value="agree"><label>Agree</label></li>
-                        <li><input type="radio" name="likert4" value="neutral"><label>Neutral</label></li>
-                        <li><input type="radio" name="likert4" value="disagree"><label>Disagree</label></li>
-                        <li><input type="radio" name="likert4" value="strong_disagree"><label>Strongly disagree</label>
-                        </li>
-                    </ul>
-
-                    <div class="pull-right">
-                        <button class="btn btn-warning">Skip</button>
-                        <button class="btn btn-success" type="submit">Submit</button>
-                    </div>
+                <form action class="form" method="post" role="form">
+                    {{ form.csrf_token }}
+                    {{ form.equipment.label }}
+                    {{ form.equipment }}
+                    {{ form.reagents.label }}
+                    {{ form.reagents }}
+                    {{ form.procedure.label }}
+                    {{ form.procedure }}
+                    {{ form.communication.label }}
+                    {{ form.communication }}
+                    {{ form.submit }}
                 </form>
             </div>
         </div>
